@@ -6,8 +6,8 @@ module multiplier #(parameter N = 5) (A, B, out);
     wire [2*N-1:0] z;
     wire[N-1:0] absA, absB;
 
-    abs_to_2scomplement #(N) absA(.in(A), .sign(A[N-1]), .out(absA));
-    abs_to_2scomplement #(N) absB(.in(B), .sign(B[N-1]), .out(absB));
+    absToTwosComp #(N) myABS1(.in(A), .sign(A[N-1]), .out(absA));
+    absToTwosComp #(N) myABS2(.in(B), .sign(B[N-1]), .out(absB));
 
     wire Av[N:0][N:0];
     wire Bv[N:0][N:0];
@@ -41,6 +41,6 @@ module multiplier #(parameter N = 5) (A, B, out);
     endgenerate
     
     Xor myXOR(.a(A[N-1]), .b(B[N-1]), .out(signResult));
-    abs_to_2scomplement #(2*N) myABS(.in(z), .sign(signResult), .out(out));
+    absToTwosComp #(2*N) myABS3(.in(z), .sign(signResult), .out(out));
 
 endmodule
