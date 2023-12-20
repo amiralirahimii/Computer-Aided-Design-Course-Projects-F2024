@@ -47,5 +47,5 @@ module controller(clk, start, complete, sel, en0, en1, en2, en3, done);
     And #3 AND16({ps[2], notPs[1], ps[0]}, en3);
     And #3 AND17({ps[2], ps[1], notPs[0]}, done);
 
-    register #3 (.clk(clk), .rst(1'b0), .en(1'b1), .in(ns), .out(ps));
+    register #3 REG(.clk(clk), .rst(1'b0), .en(1'b1), .in(ns), .out(ps));
 endmodule

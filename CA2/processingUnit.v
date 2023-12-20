@@ -21,10 +21,10 @@ module processingUnit(clk, rst, enReg, A1, W1, A2, W2, A3, W3, A4, W4, result);
 		.Out1(regMulA2W2), .Out2(regMulA3W3),
 		.Out3(regMulA4W4));
 
-	adder #10 a1(regMulA1W1,regMulA2W2,clk,A1W1AddA2W2);
-	adder #10 a2(regMulA3W3,regMulA4W4,clk,A3W3AddA4W4);
-	adder #11 a3(A1W1AddA2W2,A3W3AddA4W4,clk,addAll);
+	adder #10 a1(.A(regMulA1W1), .B(regMulA2W2), .result(A1W1AddA2W2));
+	adder #10 a2(.A(regMulA3W3), .B(regMulA4W4), .result(A3W3AddA4W4));
+	adder #11 a3(.A(A1W1AddA2W2), .B(A3W3AddA4W4), .result(addAll));
 
 	assign sign = addAll[11];
-	MUX2x1 mux2x1(.in0({sign, addAll[6:3]}), .in1(5'b0), .sel(sign), .out(result));
+	mux2x1 MUX1(.in0({sign, addAll[6:3]}), .in1(5'b0), .sel(sign), .out(result));
 endmodule

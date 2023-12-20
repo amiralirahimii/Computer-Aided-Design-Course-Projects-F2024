@@ -13,10 +13,10 @@ module dataPath(clk, rst, X1, X2, X3, X4, sel, en0, en1, en2, en3, complete, res
 	wire[4:0] a1NewA, a2NewA, a3NewA, a4NewA;
 	wire[1:0] idx;
 	
-	mux2x1 MUX1(.in0(a1New), .i1(a1Init), .sel(sel), .out(a1));
-	mux2x1 MUX2(.i0(a2New), .i1(a2Init), .sel(sel), .out(a2));
-	mux2x1 MUX3(.i0(a3New), .i1(a3Init), .sel(sel), .out(a3));
-	mux2x1 MUX4(.i0(a4New), .i1(a4Init), .sel(sel), .out(a4));
+	mux2x1 MUX1(.in0(a1New), .in1(a1Init), .sel(sel), .out(a1));
+	mux2x1 MUX2(.in0(a2New), .in1(a2Init), .sel(sel), .out(a2));
+	mux2x1 MUX3(.in0(a3New), .in1(a3Init), .sel(sel), .out(a3));
+	mux2x1 MUX4(.in0(a4New), .in1(a4Init), .sel(sel), .out(a4));
 	
 	buffer16x4 WBuffer(.out(W));
 
@@ -47,7 +47,7 @@ module dataPath(clk, rst, X1, X2, X3, X4, sel, en0, en1, en2, en3, complete, res
 			.In1(X2), .In2(X3), .In3(X4), .Out0(a1Init),
 			.Out1(a2Init), .Out2(a3Init), .Out3(a4Init));
 
-	mux4x1 MUX5(.i0(a1Init), .i1(a2Init), .i2(a3Init), .i3(a4Init),
+	mux4x1 MUX5(.in0(a1Init), .in1(a2Init), .in2(a3Init), .in3(a4Init),
 		.sel(idx), .out(lastMuxOut));
 
 	register #5 FinalReg(.clk(clk), .rst(rst), .en(en3), .in(lastMuxOut), .out(result));
