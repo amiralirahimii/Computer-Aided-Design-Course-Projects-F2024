@@ -12,10 +12,43 @@ module MaxnetTB();
 		.result(result));
 
 	always #20 clk=~clk;
-	initial begin 
-		#40 start=1'b1;
-		#20 start=1'b0;
+	initial begin
+		#30 rst=1'b1;
+		#30 rst=1'b0;
+		#50 start=1'b1;
+		#50 start=1'b0;
 		#10000
+		
+		X1=32'b 00111;
+		X2=32'b 00010;
+		X3=32'b 00001;
+		X4=32'b 00100;
+		#30 rst=1'b1;
+		#30 rst=1'b0;
+		#50 start=1'b1;
+		#50 start=1'b0;
+		#10000
+
+		X1=32'b 00011;
+		X2=32'b 00110;
+		X3=32'b 00111;
+		X4=32'b 00100;
+		#30 rst=1'b1;
+		#30 rst=1'b0;
+		#50 start=1'b1;
+		#50 start=1'b0;
+		#10000
+
+		X1=32'b 00111;
+		X2=32'b 00101;
+		X3=32'b 00101;
+		X4=32'b 00100;
+		#30 rst=1'b1;
+		#30 rst=1'b0;
+		#50 start=1'b1;
+		#50 start=1'b0;
+		#10000
+		
 		$stop;
 	end
 endmodule

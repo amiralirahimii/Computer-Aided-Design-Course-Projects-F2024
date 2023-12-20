@@ -10,9 +10,9 @@ module Maxnet(clk, rst, start, X1, X2, X3, X4, done, result);
 		.en1(en1), .en2(en2), .en3(en3), .complete(complete),
 		.result(result));
 
-	controller CU(.clk(clk), .start(start), .complete(complete), .sel(sel),
-		.en0(en0), .en1(en1), .en2(en2), .en3(en3),
-		.done(done));
+	controller CU(.clk(clk), .start(start), .complete(complete), .rst(rst),
+				.sel(sel), .en0(en0), .en1(en1), .en2(en2),
+				.en3(en3), .done(done));
 endmodule
 
 

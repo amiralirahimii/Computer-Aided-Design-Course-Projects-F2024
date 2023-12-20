@@ -6,9 +6,9 @@ module decoder(A1, A2, A3, A4, idx, done);
 
 
     Or #5 OR1(.in(A1), .out(isA1ZeroNot));
-    Or #5 OR2(.in(A2), .out(isA1ZeroNot));
-    Or #5 OR3(.in(A3), .out(isA1ZeroNot));
-    Or #5 OR4(.in(A4), .out(isA1ZeroNot));
+    Or #5 OR2(.in(A2), .out(isA2ZeroNot));
+    Or #5 OR3(.in(A3), .out(isA3ZeroNot));
+    Or #5 OR4(.in(A4), .out(isA4ZeroNot));
 
 
 	wire isA1Zero, isA2Zero, isA3Zero, isA4Zero;

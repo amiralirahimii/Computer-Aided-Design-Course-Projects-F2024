@@ -1,8 +1,8 @@
-module controller(clk, start, complete, sel, en0, en1, en2, en3, done);
-	input clk, start, complete;
+module controller(clk, start, complete, rst, sel, en0, en1, en2, en3, done);
+	input clk, start, complete, rst;
 	output sel, en0, en1, en2, en3, done;
 	
-	wire[2:0] ps=3'b0;
+	wire[2:0] ps;
 	wire[2:0] ns;
     wire[2:0] notPs;
     Not NOTPS2(ps[2], notPs[2]);
@@ -47,5 +47,5 @@ module controller(clk, start, complete, sel, en0, en1, en2, en3, done);
     And #3 AND16({ps[2], notPs[1], ps[0]}, en3);
     And #3 AND17({ps[2], ps[1], notPs[0]}, done);
 
-    register #3 REG(.clk(clk), .rst(1'b0), .en(1'b1), .in(ns), .out(ps));
+    register #3 REG(.clk(clk), .rst(rst), .en(1'b1), .in(ns), .out(ps));
 endmodule

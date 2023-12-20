@@ -7,7 +7,7 @@ module S2 #(parameter N = 1) (D00, D01, D10, D11, A1, B1, A0, B0, CLR, CLK, out)
 	wire S1, S0;
 	wire[N-1:0] DFFin;
 	assign S1 = A1 | B1;
-	assign S0 = A0 & CLR;
+	assign S0 = A0 & B0;
 	assign DFFin = ({S1, S0} == 2'b00) ? D00 :
 			({S1, S0} == 2'b01) ? D01 :
 			({S1, S0} == 2'b10) ? D10 :
