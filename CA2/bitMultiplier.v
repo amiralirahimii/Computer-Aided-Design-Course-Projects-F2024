@@ -1,4 +1,4 @@
-module bit_multiplier(Ai, Bi, pi, ci, Ao, Bo, po, co);
+module bitMultiplier(Ai, Bi, pi, ci, Ao, Bo, po, co);
     input Ai, Bi, pi, ci;
     output Ao, Bo, po, co;
 
