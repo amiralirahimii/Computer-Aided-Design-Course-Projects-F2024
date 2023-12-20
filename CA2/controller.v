@@ -2,7 +2,8 @@ module controller(clk, start, complete, sel, en0, en1, en2, en3, done);
 	input clk, start, complete;
 	output sel, en0, en1, en2, en3, done;
 	
-	wire[2:0] ps=3'b0, ns;
+	wire[2:0] ps=3'b0;
+	wire[2:0] ns;
     wire[2:0] notPs;
     Not NOTPS2(ps[2], notPs[2]);
     Not NOTPS1(ps[1], notPs[1]);

@@ -1,14 +1,14 @@
 module decoder(A1, A2, A3, A4, idx, done);
-	input[31:0] A1, A2, A3, A4;
-	output reg[1:0] idx;
-	output reg done;
+	input[4:0] A1, A2, A3, A4;
+	output [1:0] idx;
+	output done;
     wire isA1ZeroNot,isA2ZeroNot,isA3ZeroNot,isA4ZeroNot;
 
 
-    Or #32 OR1(.in(A1[4:0]), .out(isA1ZeroNot));
-    Or #32 OR2(.in(A2[4:0]), .out(isA1ZeroNot));
-    Or #32 OR3(.in(A3[4:0]), .out(isA1ZeroNot));
-    Or #32 OR4(.in(A4[4:0]), .out(isA1ZeroNot));
+    Or #5 OR1(.in(A1), .out(isA1ZeroNot));
+    Or #5 OR2(.in(A2), .out(isA1ZeroNot));
+    Or #5 OR3(.in(A3), .out(isA1ZeroNot));
+    Or #5 OR4(.in(A4), .out(isA1ZeroNot));
 
 
 	wire isA1Zero, isA2Zero, isA3Zero, isA4Zero;
