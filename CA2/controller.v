@@ -1,6 +1,6 @@
 module controller(clk, start, complete, sel, en0, en1, en2, en3, done);
 	input clk, start, complete;
-	output reg sel, en0, en1, en2, en3, done;
+	output sel, en0, en1, en2, en3, done;
 	
 	parameter[2:0] Q0=3'b000, Q1=3'b001, Q2=3'b010, Q3=3'b011, Q4=3'b100,
 			Q5=3'b101, Q6=3'b110;
@@ -37,6 +37,17 @@ module controller(clk, start, complete, sel, en0, en1, en2, en3, done);
     mux2x1 #1 MUX3(PS0Product4_1, 1'b0, complete, PS0Product4_2);
     Or #4 OR3({PS0Product1_2, PS0Product2, PS0Product3, PS0Product4_2}, ns[0]);
 
+    //finding output signals
+    wire en1Gen1, en1Gen2;
+
+    And #3 AND11({notPs[2], notPs[1], ps[0]}, en0);
+    And #3 AND12({notPs[2], ps[1], notPs[0]}, sel);
+    And #3 AND13({notPs[2], ps[1], notPs[0]}, en1Gen1);
+    And #3 AND14({ps[2], notPs[1], ps[0]}, en1Gen2);
+    Or #2 OR4({en1Gen1, en1Gen2}, en1);
+    And #3 AND15({notPs[2], ps[1], ps[0]}, en2);
+    And #3 AND16({ps[2], notPs[1], ps[0]}, en3);
+    And #3 AND17({ps[2], ps[1], notPs[0]}, done);
 
 
 	always@(posedge clk)
