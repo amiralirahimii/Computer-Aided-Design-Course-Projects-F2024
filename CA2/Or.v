@@ -14,5 +14,4 @@ module Or #(parameter N = 2)(in, out);
         end
     endgenerate
     assign out = or_intermediate[N-2];
-
 endmodule
