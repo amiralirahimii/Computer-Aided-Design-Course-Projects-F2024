@@ -18,7 +18,7 @@ module dataPath(clk, rst, X1, X2, X3, X4, sel, en0, en1, en2, en3, complete, res
 	mux2x1 MUX3(.i0(a3New), .i1(a3Init), .sel(sel), .out(a3));
 	mux2x1 MUX4(.i0(a4New), .i1(a4Init), .sel(sel), .out(a4));
 	
-	buffer16x32 WBuffer(.out(W));
+	buffer16x4 WBuffer(.out(W));
 
 	processingUnit PU1(.clk(clk), .rst(rst), .enReg(en1), .A1(a1),
 			.W1(W[0]), .A2(a2), .W2(W[1]), .A3(a3),
