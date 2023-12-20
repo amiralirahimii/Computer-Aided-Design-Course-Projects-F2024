@@ -1,5 +1,5 @@
 module buffer16x4(out);
-	parameter[4:0] ONE = 5'b01000, MINUSEPSILON = 32'b11110;
+	parameter[4:0] ONE = 5'b01000, MINUSEPSILON = 5'b11110;
 	output reg[4:0] out[0:15];
 	initial begin
 		out[0] = ONE;
