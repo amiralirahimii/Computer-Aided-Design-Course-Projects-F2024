@@ -1,9 +1,18 @@
 module adder #(parameter N=10) (A, B, result);
-	input signed[N-1:0] A, B;
-	reg[N:0] temp;
-	output reg[N:0] result;
-	always @(*) begin
-		temp = A + B;
-		result = {temp[N-1], temp[N-1:0]};
-	end
+    input[N-1:0] A, B;
+    output[N:0] result;
+    wire [N-1:0] sum;
+    wire [N:0] carry;
+
+    assign carry[0] = 0;
+    genvar i;
+    generate
+        for (i = 0; i < N; i = i + 1) 
+		begin
+            fullAdder fa(.A(A[i]), .B(B[i]), .cin(carry[i]), .sum(sum[i]),
+                		.cout(carry[i+1]));
+        end
+    endgenerate
+
+	assign result = {sum[N-1], sum[N-1:0]};
 endmodule
