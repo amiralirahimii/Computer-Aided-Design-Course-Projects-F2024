@@ -1,9 +1,9 @@
 module MaxnetTB();
 	reg clk=0,rst=0,start=0;
-	reg [4:0] X1=32'b 00001;
-	reg [4:0] X2=32'b 00010;
-	reg [4:0] X3=32'b 00011;
-	reg [4:0] X4=32'b 00100;
+	reg [4:0] X1=32'b 00010;
+	reg [4:0] X2=32'b 00111;
+	reg [4:0] X3=32'b 00001;
+	reg [4:0] X4=32'b 00110;
 	wire [4:0] result;
 	wire done;
 
