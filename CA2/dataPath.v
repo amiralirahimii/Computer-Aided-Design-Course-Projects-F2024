@@ -36,19 +36,19 @@ module dataPath(clk, rst, X1, X2, X3, X4, sel, en0, en1, en2, en3, complete, res
 			.W1(W[12]), .A2(a2), .W2(W[13]), .A3(a3),
 			.W3(W[14]), .A4(a4), .W4(W[15]), .result(a4NewA));
 	
-	reg4x32 AReg(.clk(clk), .rst(rst), .en(en2), .In0(a1NewA),
+	registerBlock #5 AReg(.clk(clk), .rst(rst), .en(en2), .In0(a1NewA),
 		.In1(a2NewA), .In2(a3NewA), .In3(a4NewA), .Out0(a1New),
 		.Out1(a2New), .Out2(a3New), .Out3(a4New));
 
 	decoder myDCD(.A1(a1New), .A2(a2New), .A3(a3New), .A4(a4New),
 			.idx(idx), .done(complete));
 
-	reg4x32 XReg(.clk(clk), .rst(rst), .en(en0), .In0(X1),
+	registerBlock #5 XReg(.clk(clk), .rst(rst), .en(en0), .In0(X1),
 			.In1(X2), .In2(X3), .In3(X4), .Out0(a1Init),
 			.Out1(a2Init), .Out2(a3Init), .Out3(a4Init));
 
 	mux4x1 MUX5(.i0(a1Init), .i1(a2Init), .i2(a3Init), .i3(a4Init),
 		.sel(idx), .out(lastMuxOut));
 
-	reg32 FinalReg(.clk(clk), .rst(rst), .en(en3), .in(lastMuxOut), .out(result));
+	register #5 FinalReg(.clk(clk), .rst(rst), .en(en3), .in(lastMuxOut), .out(result));
 endmodule
